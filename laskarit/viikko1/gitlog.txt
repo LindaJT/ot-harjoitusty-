@@ -1,0 +1,119 @@
+linjokin@lx9-fuxi217:~/Documents/ohte/viikko1$ git log --stat|cat
+commit af4055bba8b36f2512207660d2f01be540e0a4b2
+Author: LindaJT <jokinenlindak@gmail.com>
+Date:   Sun Mar 15 10:11:30 2020 +0200
+
+    file1 poistettu ja file2n nimi muutettu
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 83d6d8379078b39f797c63c7e627ad7b83e80766
+Author: LindaJT <jokinenlindak@gmail.com>
+Date:   Sun Mar 15 10:10:11 2020 +0200
+
+    siirretty
+
+ file1 | 0
+ file2 | 0
+ file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit e72f9ac4ccbd8e6291be35ad7e7a683db0b16ca8
+Author: LindaJT <jokinenlindak@gmail.com>
+Date:   Sun Mar 15 10:07:45 2020 +0200
+
+    siirretty oikeaan kansioon
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 029aaf1277368afb18b0060b9538dd4bbd6bb9ac
+Author: LindaJT <jokinenlindak@gmail.com>
+Date:   Sun Mar 15 10:03:44 2020 +0200
+
+    uusi hakemisto ja tiedostoja lisätty
+
+ file1 | 0
+ file2 | 0
+ file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 2431e52b8976d431464ed6b05d6992036a4392e2
+Author: LindaJT <jokinenlindak@gmail.com>
+Date:   Sun Mar 15 09:59:30 2020 +0200
+
+    muutoksia
+
+ eka.txt    | 3 ++-
+ kolmas.txt | 2 +-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+commit 5b5a3a8af1faf03f489371c620e5b947863cf82e
+Author: LindaJT <jokinenlindak@gmail.com>
+Date:   Sun Mar 15 09:57:52 2020 +0200
+
+    nimi vaihdettu
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 14496c7a15b2d881afb8bb39e3e62b6be10f6a44
+Author: LindaJT <jokinenlindak@gmail.com>
+Date:   Sun Mar 15 09:57:02 2020 +0200
+
+    poistettu toinen.txt
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 5924b91e627294aad338c938f45eae7dfe4b2876
+Author: LindaJT <jokinenlindak@gmail.com>
+Date:   Sun Mar 15 09:54:02 2020 +0200
+
+    uusi hakemisto ja tiedosto
+
+ stuff/jotain.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 4963586e634e218d81a53ea4d792be821dd54bcc
+Author: LindaJT <jokinenlindak@gmail.com>
+Date:   Sun Mar 15 09:52:36 2020 +0200
+
+    muutoksia!
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit c47086aac5483af2ca6465d2f2cd24e5c649b6be
+Author: LindaJT <jokinenlindak@gmail.com>
+Date:   Sun Mar 15 09:51:46 2020 +0200
+
+    lisäys
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 1767a45201da4d35ba1e6739925c9ad6d25e7dc3
+Author: LindaJT <jokinenlindak@gmail.com>
+Date:   Sun Mar 15 09:50:16 2020 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit b22c3e790b5f40f0ea3b8e3f72659f8f0f28e3ae
+Author: LindaJT <jokinenlindak@gmail.com>
+Date:   Sun Mar 15 09:48:42 2020 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
