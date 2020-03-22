@@ -1,21 +1,21 @@
-#Vaatimusmäärittely
+# Vaatimusmäärittely
 
-##Sovelluksen tarkoitus
+## Sovelluksen tarkoitus
 
 Sovelluksen avulla käyttäjän on mahdollista asettaa itselleen erilaisia tavoitteita esimerkiksi tietylle päivälle, viikolle tai vuodelle. Sovellusta on mahdollista käyttää useamman rekisteröityneen käyttäjän, jolloin jokaisella käyttäjällä on omat henkilökohtaiset tavoitteet. Tavoitteet voivat kuulua eri kategorioihin, kuten budjetointi, terveys, liikunta tai opiskelu. 
 
-##Käyttäjät
+## Käyttäjät
 
 Alussa sovelluksella on ainoastaan yksi käyttäjärooli eli normaali käyttäjä.
 
-##Perusversion toiminnallisuudet
+## Perusversion toiminnallisuudet
 
-###Ennen kirjautumista
+### Ennen kirjautumista
 
 * Käyttäjä voi rekisteröityä käyttäjäksi
 * Käyttäjä voi kirjautua sisään sovellukseen
 
-###Kirjautumisen jälkeen
+### Kirjautumisen jälkeen
 
 * Käyttäjä voi asettaa itselleen uuden tavoitteen
 	* Tavoitteelle asetetaan päivämäärä johon mennessä se tulisi saavuttaa
@@ -25,7 +25,7 @@ Alussa sovelluksella on ainoastaan yksi käyttäjärooli eli normaali käyttäj�
 * Käyttäjä voi asettaa tavoitteen toteutetuksi
 * Käyttäjä voi kirjautua ulos
 
-##Jatkokehitysideoita
+## Jatkokehitysideoita
 
 * Tavoitteen voi valita toistuvan esim. päivittäin/viikottain/kuukausittain
 * Käyttäjä voi tarkastella statistiikkaa toteutuneista tavoitteista
