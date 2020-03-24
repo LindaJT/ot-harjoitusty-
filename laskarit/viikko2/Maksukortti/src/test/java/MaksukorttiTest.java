@@ -45,7 +45,7 @@ public class MaksukorttiTest {
         kortti.lataaRahaa(2.0);
         kortti.syoMaukkaasti();
 
-        assertEquals("Kortilla on rahaa 1.0 euroa", kortti.toString());
+        assertEquals("Kortilla on rahaa 0.0 euroa", kortti.toString());
     }
     
     @Test
