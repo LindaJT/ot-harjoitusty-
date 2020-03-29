@@ -1,16 +1,11 @@
-# Otsikko
+# Goal Planner App
 
-Normaali
+Sovelluksen avulla käyttäjän on mahdollista asettaa itselleen eri kategorioihin liittyviä tavoitteita sekä merkitä tavoitteet saavutetuksi.
 
-*kursivoitu*
-
-**bolderoitu**
-
-
-[gitlog.txt](https://github.com/LindaJT/ot-harjoitusty-/blob/master/laskarit/viikko1/gitlog.txt)
-
-[komentorivi.tx](https://github.com/LindaJT/ot-harjoitusty-/blob/master/laskarit/viikko1/komentorivi.txt)
+## Dokumentaatio
 
 [Vaatimusmäärittely](https://github.com/LindaJT/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
 [Työaikakirjanpito](https://github.com/LindaJT/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
+
+

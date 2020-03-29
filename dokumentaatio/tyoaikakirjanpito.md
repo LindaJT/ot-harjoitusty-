@@ -3,4 +3,6 @@
 Pvm   | Aika | Mitä tein
 ------- | -------- | ----------------
 22.3. | 2 | Määrittelydokumentti ja työaikakirjanpito
+28.3. | 2 | Luokkien suunnittelua ja projektin luominen
+29.3. | 2 | Createuser- metodi ja testi
 
