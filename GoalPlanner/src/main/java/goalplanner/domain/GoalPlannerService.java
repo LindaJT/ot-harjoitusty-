@@ -20,7 +20,7 @@ public class GoalPlannerService {
         User user = new User(name, username);
         try {
             userDao.create(user);
-        } catch(Exception e) {
+        } catch (Exception e) {
             return false;
         }
 

@@ -12,8 +12,8 @@ Alussa sovelluksella on ainoastaan yksi käyttäjärooli eli normaali käyttäj�
 
 ### Ennen kirjautumista
 
-* Käyttäjä voi rekisteröityä käyttäjäksi
-* Käyttäjä voi kirjautua sisään sovellukseen
+* Käyttäjä voi rekisteröityä käyttäjäksi TEHTY
+* Käyttäjä voi kirjautua sisään sovellukseen TEHTY
 
 ### Kirjautumisen jälkeen
 

@@ -49,10 +49,10 @@ public class GoalPlannerUi extends Application {
         
         Button loginButton = new Button("login");
         Button createButton = new Button("create new user");
-        loginButton.setOnAction(e->{
+        loginButton.setOnAction(e-> {
             String username = usernameInput.getText();
             menuLabel.setText(username + " logged in...");
-            if ( service.login(username) ){
+            if (service.login(username)) {
                 loginMessage.setText("");
                 primaryStage.setScene(goalScene);  
                 usernameInput.setText("");
@@ -62,7 +62,7 @@ public class GoalPlannerUi extends Application {
             }      
         });  
         
-        createButton.setOnAction(e->{
+        createButton.setOnAction(e-> {
             usernameInput.setText("");
             primaryStage.setScene(newUserScene);   
         });  
@@ -94,14 +94,14 @@ public class GoalPlannerUi extends Application {
         Button createNewUserButton = new Button("create");
         createNewUserButton.setPadding(new Insets(10));
 
-        createNewUserButton.setOnAction(e->{
+        createNewUserButton.setOnAction(e-> {
             String username = newUsernameInput.getText();
             String name = newNameInput.getText();
    
-            if ( username.length()==2 || name.length()<2 ) {
+            if (username.length() == 2 || name.length() < 2) {
                 userCreationMessage.setText("username or name too short");
                 userCreationMessage.setTextFill(Color.RED);              
-            } else if ( service.createUser(username, name) ){
+            } else if (service.createUser(username, name)) {
                 userCreationMessage.setText("");                
                 loginMessage.setText("new user created");
                 loginMessage.setTextFill(Color.GREEN);
@@ -124,10 +124,10 @@ public class GoalPlannerUi extends Application {
         primaryStage.setTitle("Goal Planner");
         primaryStage.setScene(logInScene);
         primaryStage.show();
-        primaryStage.setOnCloseRequest(e->{
+        primaryStage.setOnCloseRequest(e-> {
             System.out.println("closing");
             System.out.println(service.getLoggedUser());
-            if (service.getLoggedUser()!=null) {
+            if (service.getLoggedUser() != null) {
                 e.consume();   
             }
             
