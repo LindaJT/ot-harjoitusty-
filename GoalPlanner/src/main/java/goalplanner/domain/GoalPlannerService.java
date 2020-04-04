@@ -1,13 +1,13 @@
 
 package goalplanner.domain;
 
-import goalplanner.dao.FileUserDao;
 import goalplanner.dao.UserDao;
 
 
 public class GoalPlannerService {
     
     private UserDao userDao;
+    private User loggedIn;
     
     public GoalPlannerService(UserDao userDao) {
         this.userDao = userDao;
@@ -25,6 +25,26 @@ public class GoalPlannerService {
         }
 
         return true;
+    }
+    
+    public boolean login(String username) {
+        User user = userDao.findByUsername(username);
+        if (user == null) {
+            return false;
+        }
+        
+        loggedIn = user;
+        
+        return true;
+    }
+    
+    public User getLoggedUser() {
+        return loggedIn;
+    }
+
+    
+    public void logout() {
+        loggedIn = null;  
     }
     
 }
