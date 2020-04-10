@@ -10,4 +10,27 @@ Sovelluksen avulla käyttäjän on mahdollista asettaa itselleen eri kategorioih
 
 [Arkkitehtuuri](https://github.com/LindaJT/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
+## Komentorivitoiminnot
+
+### Testaus
+
+Testit suoritetaan komennolla:
+`mvn test`
+
+Testikattavuusraportti luodaan komennolla:
+`mvn jacoco:report`
+
+Kattavuusraporttia voi tarkastella avaamalla selaimella tiedoston */GoalPlanner/target/site/jacoco/index.html* .
+
+### Suoritettavan jarin generointi
+
+Komento:
+`mcn package`
+
+Tiedostoon checkstyle.xml määrittelemät tarkistukset suoritetaan komennolla:
+
+`mvn jxr:jxr checkstyle:checkstyle`
+
+Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto */GoalPlanner/target/site/checkstyle.html* .
+
 
