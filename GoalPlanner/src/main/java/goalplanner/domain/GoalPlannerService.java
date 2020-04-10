@@ -3,7 +3,10 @@ package goalplanner.domain;
 
 import goalplanner.dao.GoalDao;
 import goalplanner.dao.UserDao;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class GoalPlannerService {
@@ -59,6 +62,26 @@ public class GoalPlannerService {
     
     public void logout() {
         loggedIn = null;  
+    }
+    
+    public List<Goal> getUnachieved() {
+        if (loggedIn == null) {
+            return new ArrayList<>();
+        }
+        return goalDao.getAll()
+                .stream()
+                .sorted()
+                .filter(goal->goal.getUser().equals(loggedIn))
+                .filter(goal->!goal.getAchieved())
+                .collect(Collectors.toList());
+    }
+    
+    public void setAchieved(int id) {
+        try {
+            goalDao.setAchieved(id);
+        } catch (Exception e) {
+            
+        }
     }
     
 }

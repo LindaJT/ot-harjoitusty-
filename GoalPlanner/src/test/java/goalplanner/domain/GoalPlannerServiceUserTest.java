@@ -43,11 +43,21 @@ public class GoalPlannerServiceUserTest {
         service.createUser("Pekka", "pekka");
         boolean result = service.login("pekka");
         assertTrue(result);
+        assertEquals(service.getLoggedUser().getUsername(), "pekka");
     }
     
     @Test
     public void userCanNotLogInWithNonExcistingUsername() {
         boolean result = service.login("matti");
         assertFalse(result);
+    }
+    
+    @Test
+    public void userCanLogout() {
+        service.createUser("Pekka", "pekka");
+        boolean result = service.login("pekka");
+        assertTrue(result);
+        service.logout();
+        assertEquals(null, service.getLoggedUser());
     }
 }

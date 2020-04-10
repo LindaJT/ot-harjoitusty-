@@ -3,6 +3,7 @@ package goalplanner.domain;
 
 import org.junit.Before;
 import java.util.Date;
+import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -30,6 +31,39 @@ public class GoalPlannerServiceGoalTest {
     public void canCreateGoal() {
         boolean result = service.createGoal("run a marathon", new Date(2020, 06,01));
         assertTrue(result);
+    }
+    
+    @Test
+    public void listContainsInitializedGoal() {
+        List<Goal> goals = service.getUnachieved();
+        assertEquals(1, goals.size());
+        Goal goal = goals.get(0);
+        assertEquals("80 op", goal.getName());
+        assertEquals("eka", goal.getUser().getUsername());
+    }
+    
+    @Test 
+    public void emptyListIfUserDoesntHaveGoals() {
+        service.logout();
+        service.login("toka");
+        List<Goal> goals = service.getUnachieved();
+        assertEquals(0, goals.size());
+    }
+    
+    @Test 
+    public void achievedGoalNotListed() {
+        service.setAchieved(1);
+        List<Goal> goals = service.getUnachieved();
+        assertEquals(0, goals.size());
+    }
+    
+    @Test
+    public void loggedUserCanAddGoals() {
+        service.createGoal("test", new Date(2020, 01, 01));
+        List<Goal> goals = service.getUnachieved();
+        assertEquals(2, goals.size());
+        Goal goal = goals.get(0);
+        assertEquals("test", goal.getName());
     }
     
 }

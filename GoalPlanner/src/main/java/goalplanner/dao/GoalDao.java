@@ -9,7 +9,7 @@ public interface GoalDao {
     
     Goal create(Goal goal) throws Exception;
     List<Goal> getAll();
-    void setAchieved(int Id) throws Exception;
+    void setAchieved(int id) throws Exception;
     
     
 }
