@@ -9,4 +9,6 @@ Pvm   | Aika | Mitä tein
 4.4.  | 1.5| Checkstyle
 10.4. | 3 | Goal-luokka, GoalDao, FileGoalDao ja testauksen aloittaminen goaleille
 
+Yhteensä 12.5 tuntia
+
 

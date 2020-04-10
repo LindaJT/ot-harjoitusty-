@@ -8,4 +8,6 @@ Sovelluksen avulla käyttäjän on mahdollista asettaa itselleen eri kategorioih
 
 [Työaikakirjanpito](https://github.com/LindaJT/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
 
+[Arkkitehtuuri](https://github.com/LindaJT/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
+
 
