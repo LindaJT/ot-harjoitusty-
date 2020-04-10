@@ -7,5 +7,6 @@ Pvm   | Aika | Mitä tein
 29.3. | 2 | Createuser- metodi ja testi
 3.4.  | 2 | User luokan kasvattaminen ja testien lisäys
 4.4.  | 1.5| Checkstyle
+10.4. | 3 | Goal-luokka, GoalDao, FileGoalDao ja testauksen aloittaminen goaleille
 
 
