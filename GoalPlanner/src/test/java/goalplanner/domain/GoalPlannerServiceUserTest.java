@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
 public class GoalPlannerServiceUserTest {
     private FakeUserDao userDao;
     private GoalPlannerService service;
+    private FakeGoalDao goalDao;
     
     public GoalPlannerServiceUserTest() {
     }
@@ -20,7 +21,8 @@ public class GoalPlannerServiceUserTest {
     @Before
     public void setUp() {
         userDao = new FakeUserDao();
-        service = new GoalPlannerService(userDao);
+        goalDao = new FakeGoalDao();
+        service = new GoalPlannerService(userDao, goalDao);
     }
     
     @Test

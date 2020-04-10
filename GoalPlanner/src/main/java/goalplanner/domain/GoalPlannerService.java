@@ -1,16 +1,20 @@
 
 package goalplanner.domain;
 
+import goalplanner.dao.GoalDao;
 import goalplanner.dao.UserDao;
+import java.util.Date;
 
 
 public class GoalPlannerService {
     
+    private GoalDao goalDao;
     private UserDao userDao;
     private User loggedIn;
     
-    public GoalPlannerService(UserDao userDao) {
+    public GoalPlannerService(UserDao userDao, GoalDao goalDao) {
         this.userDao = userDao;
+        this.goalDao = goalDao;
     }
     
     public boolean createUser(String name, String username)  {   
@@ -24,6 +28,16 @@ public class GoalPlannerService {
             return false;
         }
 
+        return true;
+    }
+    
+    public boolean createGoal(String name, Date date) {
+        Goal goal = new Goal(name, date, loggedIn);
+        try {
+            goalDao.create(goal);
+        } catch (Exception e) {
+            return false;
+        }
         return true;
     }
     

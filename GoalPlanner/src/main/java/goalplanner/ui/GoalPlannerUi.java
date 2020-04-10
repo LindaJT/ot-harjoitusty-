@@ -1,6 +1,7 @@
 
 package goalplanner.ui;
 
+import goalplanner.dao.FileGoalDao;
 import goalplanner.dao.FileUserDao;
 import goalplanner.domain.GoalPlannerService;
 import javafx.geometry.Insets;
@@ -30,10 +31,11 @@ public class GoalPlannerUi extends Application {
     }
     
     @Override
-    public void init() {
+    public void init() throws Exception {
         FileUserDao userDao = new FileUserDao("users.txt");
+        FileGoalDao goalDao = new FileGoalDao("goals.txt", userDao);
 
-        service = new GoalPlannerService(userDao);
+        service = new GoalPlannerService(userDao, goalDao);
     }
 
     @Override
