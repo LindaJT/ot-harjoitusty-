@@ -10,7 +10,13 @@ Sovelluksen avulla käyttäjän on mahdollista asettaa itselleen eri kategorioih
 
 [Arkkitehtuuri](https://github.com/LindaJT/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
+## Releaset
+
+
+
 ## Komentorivitoiminnot
+
+Komennot tulee suorittaa hakemistossa GoalPlanner
 
 ### Testaus
 
@@ -25,7 +31,7 @@ Kattavuusraporttia voi tarkastella avaamalla selaimella tiedoston */GoalPlanner/
 ### Suoritettavan jarin generointi
 
 Komento:
-`mcn package`
+`mvn package`
 
 Tiedostoon checkstyle.xml määrittelemät tarkistukset suoritetaan komennolla:
 
