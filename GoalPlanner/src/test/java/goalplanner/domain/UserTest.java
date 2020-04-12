@@ -14,5 +14,12 @@ import static org.junit.Assert.*;
  */
 public class UserTest {
     
+    @Test
+    public void getNameTest() {
+        User user = new User("Pekka", "pekka");
+        String name = user.getName();
+        assertEquals("Pekka", name);
+    }
+    
     
 }
