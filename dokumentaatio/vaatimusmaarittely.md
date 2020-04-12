@@ -12,18 +12,18 @@ Alussa sovelluksella on ainoastaan yksi käyttäjärooli eli normaali käyttäj�
 
 ### Ennen kirjautumista
 
-* Käyttäjä voi rekisteröityä käyttäjäksi TEHTY
-* Käyttäjä voi kirjautua sisään sovellukseen TEHTY
+* ~~Käyttäjä voi rekisteröityä käyttäjäksi~~ TEHTY
+* ~~Käyttäjä voi kirjautua sisään sovellukseen~~ TEHTY
 
 ### Kirjautumisen jälkeen
 
-* Käyttäjä voi asettaa itselleen uuden tavoitteen
-	* Tavoitteelle asetetaan päivämäärä johon mennessä se tulisi saavuttaa
+* ~~Käyttäjä voi asettaa itselleen uuden tavoitteen~~ TEHTY
+	* ~~Tavoitteelle asetetaan päivämäärä johon mennessä se tulisi saavuttaa~~TEHTY
 	* Tavoitteelle valitaan kategoria
-* Etusivulla käyttäjä voi tarkastella kaikkia asettamiaan tavoitteita
-	* Tavoitteet ovat järjestyksessä tavoitepäivämäärän mukaan
+* Etusivulla käyttäjä voi tarkastella kaikkia asettamiaan tavoitteita **Sovelluslogiikka toteutettu, mutta ei vielä käyttöliittymässä**
+	* Tavoitteet ovat järjestyksessä tavoitepäivämäärän mukaan **Sovelluslogiikka toteutettu, mutta ei vielä käyttöliittymässä**
 * Käyttäjä voi asettaa tavoitteen toteutetuksi
-* Käyttäjä voi kirjautua ulos
+* ~~Käyttäjä voi kirjautua ulos~~ TEHTY
 
 ## Jatkokehitysideoita
 
