@@ -49,33 +49,19 @@ public class Goal implements Comparable<Goal> {
         return user;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 71 * hash + this.id;
-        return hash;
-    }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
         if (getClass() != obj.getClass()) {
             return false;
         }
         final Goal other = (Goal) obj;
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (!Objects.equals(this.goalDate, other.goalDate)) {
+        if (this.id != other.id) {
             return false;
         }
         return true;
     }
+
 
     @Override
     public int compareTo(Goal goal) {

@@ -58,6 +58,13 @@ public class GoalPlannerServiceGoalTest {
     }
     
     @Test
+    public void emptyListIfUserLogOut() {
+        service.logout();
+        List<Goal> goals = service.getUnachieved();
+        assertEquals(0, goals.size());
+    }
+    
+    @Test
     public void loggedUserCanAddGoals() {
         service.createGoal("test", new Date(2020, 01, 01));
         List<Goal> goals = service.getUnachieved();
