@@ -8,7 +8,9 @@ Pvm   | Aika | Mitä tein
 3.4.  | 2 | User luokan kasvattaminen ja testien lisäys
 4.4.  | 1.5| Checkstyle
 10.4. | 3 | Goal-luokka, GoalDao, FileGoalDao ja testauksen aloittaminen goaleille
+11.4. | 1 | Lisää testausta
+12.4. |3 | Lisää testejä, ui:n kehittämistä, viikon tehtävien tekemistä (checktyle, release jne.)
 
-Yhteensä 12.5 tuntia
+Yhteensä 18.5 tuntia
 
 

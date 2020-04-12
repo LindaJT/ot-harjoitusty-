@@ -12,7 +12,7 @@ Sovelluksen avulla käyttäjän on mahdollista asettaa itselleen eri kategorioih
 
 ## Releaset
 
-
+[Viikko 5](https://github.com/LindaJT/ot-harjoitustyo/releases/tag/viikko5)
 
 ## Komentorivitoiminnot
 
@@ -32,6 +32,8 @@ Kattavuusraporttia voi tarkastella avaamalla selaimella tiedoston */GoalPlanner/
 
 Komento:
 `mvn package`
+
+### Checktyle
 
 Tiedostoon checkstyle.xml määrittelemät tarkistukset suoritetaan komennolla:
 
