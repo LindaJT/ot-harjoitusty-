@@ -4,6 +4,7 @@ package goalplanner.ui;
 import goalplanner.dao.FileGoalDao;
 import goalplanner.dao.FileUserDao;
 import goalplanner.domain.GoalPlannerService;
+import java.util.Date;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -12,7 +13,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
@@ -116,14 +121,51 @@ public class GoalPlannerUi extends Application {
         });  
         
         newUserPane.getChildren().addAll(userCreationMessage, newUsernamePane, newNamePane, createNewUserButton); 
+        
+        ScrollPane goalScroll = new ScrollPane();
+        BorderPane mainPane = new BorderPane(goalScroll);
+        
+        goalScene = new Scene(mainPane, 300, 250);
+        
+        VBox createForm = new VBox(10);
+        Button createGoal = new Button("Set");
+        Region spacer = new Region();
+        VBox.setVgrow(spacer, Priority.ALWAYS);
+        Label name = new Label("Goal name");
+        TextField nameInput = new TextField();
+        Label date = new Label("Set goal day, month and year");
+        TextField dayInput = new TextField();
+        TextField monthInput = new TextField();
+        TextField yearInput = new TextField();
+        createGoal.setOnAction(e-> {
+            Date createDate;
+            createDate = new Date(Integer.parseInt(yearInput.getText()), Integer.parseInt(monthInput.getText()), Integer.parseInt(dayInput.getText()));
+            service.createGoal(nameInput.getText(), createDate);
+            primaryStage.setScene(goalScene);
+        });
+        
+        createForm.getChildren().addAll(name, nameInput, spacer, date, dayInput, monthInput, yearInput, createGoal);
+        
+        Scene createGoalScene = new Scene(createForm, 300, 200);
        
         newUserScene = new Scene(newUserPane, 300, 250);
-        VBox main = new VBox(10);
-        Label title = new Label("Hello world!");
-        main.getChildren().addAll(title);
-        goalScene = new Scene(main, 300, 250);
         
-        primaryStage.setTitle("Goal Planner");
+        
+        VBox menuPane = new VBox(10);
+        Button logoutButton = new Button("Logout");
+        Button createGoalButton = new Button("Set a goal!");
+        menuPane.getChildren().addAll(menuLabel, logoutButton, createGoalButton);
+        logoutButton.setOnAction(e->{
+            service.logout();
+            primaryStage.setScene(logInScene);
+        });
+        createGoalButton.setOnAction(e-> {
+            primaryStage.setScene(createGoalScene);
+        });
+        
+        mainPane.setTop(menuPane);
+        
+        primaryStage.setTitle("Welcome to Goal Planner!");
         primaryStage.setScene(logInScene);
         primaryStage.show();
         primaryStage.setOnCloseRequest(e-> {
