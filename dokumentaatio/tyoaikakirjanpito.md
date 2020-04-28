@@ -10,7 +10,9 @@ Pvm   | Aika | Mitä tein
 10.4. | 3 | Goal-luokka, GoalDao, FileGoalDao ja testauksen aloittaminen goaleille
 11.4. | 1 | Lisää testausta
 12.4. |3 | Lisää testejä, ui:n kehittämistä, viikon tehtävien tekemistä (checktyle, release jne.)
+26.4. | 3 | Dao-testien aloitus, datet localdateiksi
+28.4. | 5 | Dao-testeille jatkoa, ui:n kehittämistä, dokumentaatiota
 
-Yhteensä 18.5 tuntia
+Yhteensä 26.5 tuntia
 
 
