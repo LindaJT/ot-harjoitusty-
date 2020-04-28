@@ -10,8 +10,11 @@ Sovelluksen avulla käyttäjän on mahdollista asettaa itselleen eri kategorioih
 
 [Arkkitehtuuri](https://github.com/LindaJT/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
+[Käyttöohje](https://github.com/LindaJT/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
+
 ## Releaset
 
+[Viikko 6](https://github.com/LindaJT/ot-harjoitustyo/releases/tag/viikko6)
 [Viikko 5](https://github.com/LindaJT/ot-harjoitustyo/releases/tag/viikko5)
 
 ## Komentorivitoiminnot
@@ -33,7 +36,7 @@ Kattavuusraporttia voi tarkastella avaamalla selaimella tiedoston */GoalPlanner/
 Komento:
 `mvn package`
 
-### Checktyle
+### Checkstyle
 
 Tiedostoon checkstyle.xml määrittelemät tarkistukset suoritetaan komennolla:
 

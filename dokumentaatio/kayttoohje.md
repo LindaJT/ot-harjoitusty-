@@ -1,4 +1,4 @@
-## Käyttö-ohje - GoalPlanner
+## Käyttöohje - GoalPlanner
 
 ### Kirjautuminen
 
