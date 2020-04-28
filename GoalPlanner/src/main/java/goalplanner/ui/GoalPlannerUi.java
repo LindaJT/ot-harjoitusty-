@@ -3,8 +3,10 @@ package goalplanner.ui;
 
 import goalplanner.dao.FileGoalDao;
 import goalplanner.dao.FileUserDao;
+import goalplanner.domain.Goal;
 import goalplanner.domain.GoalPlannerService;
 import java.util.Date;
+import java.util.List;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -30,6 +32,8 @@ public class GoalPlannerUi extends Application {
     private Scene goalScene;
     private Scene newUserScene;
     private Scene logInScene;
+    
+    private VBox goalNodes;
     
     public static void main(String[] args) {
         launch(args);
@@ -76,7 +80,7 @@ public class GoalPlannerUi extends Application {
         
         loginPane.getChildren().addAll(loginMessage, inputPane, loginButton, createButton);       
         
-        logInScene = new Scene(loginPane, 300, 250);    
+        logInScene = new Scene(loginPane, 500, 500);    
    
         // new createNewUserScene
         
@@ -125,30 +129,35 @@ public class GoalPlannerUi extends Application {
         ScrollPane goalScroll = new ScrollPane();
         BorderPane mainPane = new BorderPane(goalScroll);
         
-        goalScene = new Scene(mainPane, 300, 250);
+        goalScene = new Scene(mainPane, 500, 500);
         
         VBox createForm = new VBox(10);
         Button createGoal = new Button("Set");
         Region spacer = new Region();
         VBox.setVgrow(spacer, Priority.ALWAYS);
-        Label name = new Label("Goal name");
-        TextField nameInput = new TextField();
+        Label name = new Label("Goal");
+        TextField nameInput = new TextField("Name");
         Label date = new Label("Set goal day, month and year");
-        TextField dayInput = new TextField();
-        TextField monthInput = new TextField();
-        TextField yearInput = new TextField();
+        TextField dayInput = new TextField("DD");
+        TextField monthInput = new TextField("MM");
+        TextField yearInput = new TextField("YYYY");
         createGoal.setOnAction(e-> {
             Date createDate;
             createDate = new Date(Integer.parseInt(yearInput.getText()), Integer.parseInt(monthInput.getText()), Integer.parseInt(dayInput.getText()));
             service.createGoal(nameInput.getText(), createDate);
+            nameInput.setText("Goal");
+            dayInput.setText("DD");
+            monthInput.setText("MM");
+            yearInput.setText("YYYY");
+            redrawGoals();
             primaryStage.setScene(goalScene);
         });
         
-        createForm.getChildren().addAll(name, nameInput, spacer, date, dayInput, monthInput, yearInput, createGoal);
+        createForm.getChildren().addAll(name, nameInput, date, dayInput, monthInput, yearInput, createGoal);
         
-        Scene createGoalScene = new Scene(createForm, 300, 200);
+        Scene createGoalScene = new Scene(createForm, 500, 500);
        
-        newUserScene = new Scene(newUserPane, 300, 250);
+        newUserScene = new Scene(newUserPane, 500, 500);
         
         
         VBox menuPane = new VBox(10);
@@ -163,6 +172,12 @@ public class GoalPlannerUi extends Application {
             primaryStage.setScene(createGoalScene);
         });
         
+        goalNodes = new VBox(10);
+        goalNodes.setMaxWidth(280);
+        goalNodes.setMinWidth(280);
+        redrawGoals();
+        
+        goalScroll.setContent(goalNodes);
         mainPane.setTop(menuPane);
         
         primaryStage.setTitle("Welcome to Goal Planner!");
@@ -177,5 +192,42 @@ public class GoalPlannerUi extends Application {
             
         });
     }
+    
+    public Node createGoalNode(Goal goal) {
+        HBox box = new HBox(10);
+        Label label  = new Label(goal.getName());
+        label.setMinHeight(28);
+        int day = goal.getGoalDate().getDay();
+        int month = goal.getGoalDate().getMonth();
+        int year = goal.getGoalDate().getYear();
+        Label date = new Label(day + "/" + month + "/" + year);
+        date.setMinHeight(28);
+        Button button = new Button("Achieved the goal!");
+        button.setOnAction(e->{
+            service.setAchieved(goal.getId());
+            redrawGoals();
+        });
+                
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+        box.setPadding(new Insets(0,5,0,5));
+        
+        box.getChildren().addAll(label, date, spacer, button);
+        return box;
+    }
+    
+    public void redrawGoals() {
+        goalNodes.getChildren().clear();     
+
+        List<Goal> unachieved = service.getUnachieved();
+        unachieved.forEach(goal->{
+            goalNodes.getChildren().add(createGoalNode(goal));
+        });     
+    }
+    
+    @Override
+    public void stop() {
+      System.out.println("app closing");
+    } 
     
 }

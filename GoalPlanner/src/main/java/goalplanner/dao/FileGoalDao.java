@@ -24,9 +24,9 @@ public class FileGoalDao implements GoalDao {
                 String[] parts = reader.nextLine().split(";");
                 int id = Integer.parseInt(parts[0]);
                 String name = parts[1];
-                Date goalDate = new Date(parts[3]);
-                User user = users.getAll().stream().filter(u->u.getUsername().equals(parts[5])).findFirst().orElse(null);
-                Goal goal = new Goal(name, goalDate, user);
+                Date goalDate = new Date(parts[2]);
+                User user = users.getAll().stream().filter(u->u.getUsername().equals(parts[4])).findFirst().orElse(null);
+                Goal goal = new Goal(id, name, goalDate, user);
                 goals.add(goal);
             }
         } catch (Exception e) {

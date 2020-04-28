@@ -12,6 +12,15 @@ public class Goal implements Comparable<Goal> {
     private Boolean achieved;
     private User user;
     
+    public Goal(int id, String name, Date goalDate, User user) {
+        this.id = id;
+        this.name = name;
+        this.goalDate = goalDate;
+        this.achieved = false;
+        this.user = user;
+        
+    }
+    
     public Goal(String name, Date goalDate, User user) {
         this.name = name;
         this.goalDate = goalDate;
