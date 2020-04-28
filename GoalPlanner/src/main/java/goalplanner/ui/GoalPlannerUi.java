@@ -52,23 +52,23 @@ public class GoalPlannerUi extends Application {
         VBox loginPane = new VBox(10);
         HBox inputPane = new HBox(10);
         loginPane.setPadding(new Insets(10, 10, 10, 10));
-        Label loginLabel = new Label("username");
+        Label loginLabel = new Label("Username");
         TextField usernameInput = new TextField();
         
         inputPane.getChildren().addAll(loginLabel, usernameInput);
         Label loginMessage = new Label();
         
-        Button loginButton = new Button("login");
-        Button createButton = new Button("create new user");
+        Button loginButton = new Button("Login");
+        Button createButton = new Button("Create new user");
         loginButton.setOnAction(e-> {
             String username = usernameInput.getText();
-            menuLabel.setText(username + " logged in...");
+            menuLabel.setText("Welcome to GoalPlanner " + username + "!");
             if (service.login(username)) {
                 loginMessage.setText("");
                 primaryStage.setScene(goalScene);  
                 usernameInput.setText("");
             } else {
-                loginMessage.setText("user does not exist");
+                loginMessage.setText("User does not exist");
                 loginMessage.setTextFill(Color.RED);
             }      
         });  
@@ -89,36 +89,36 @@ public class GoalPlannerUi extends Application {
         HBox newUsernamePane = new HBox(10);
         newUsernamePane.setPadding(new Insets(10));
         TextField newUsernameInput = new TextField(); 
-        Label newUsernameLabel = new Label("username");
+        Label newUsernameLabel = new Label("Username");
         newUsernameLabel.setPrefWidth(100);
         newUsernamePane.getChildren().addAll(newUsernameLabel, newUsernameInput);
      
         HBox newNamePane = new HBox(10);
         newNamePane.setPadding(new Insets(10));
         TextField newNameInput = new TextField();
-        Label newNameLabel = new Label("name");
+        Label newNameLabel = new Label("Name");
         newNameLabel.setPrefWidth(100);
         newNamePane.getChildren().addAll(newNameLabel, newNameInput);        
         
         Label userCreationMessage = new Label();
         
-        Button createNewUserButton = new Button("create");
+        Button createNewUserButton = new Button("Create");
         createNewUserButton.setPadding(new Insets(10));
 
         createNewUserButton.setOnAction(e-> {
             String username = newUsernameInput.getText();
             String name = newNameInput.getText();
    
-            if (username.length() == 2 || name.length() < 2) {
-                userCreationMessage.setText("username or name too short");
+            if (username.length() < 2 || name.length() < 2) {
+                userCreationMessage.setText("Username or name too short");
                 userCreationMessage.setTextFill(Color.RED);              
-            } else if (service.createUser(username, name)) {
+            } else if (service.createUser(name, username)) {
                 userCreationMessage.setText("");                
-                loginMessage.setText("new user created");
+                loginMessage.setText("New user created");
                 loginMessage.setTextFill(Color.GREEN);
                 primaryStage.setScene(logInScene);      
             } else {
-                userCreationMessage.setText("username has to be unique");
+                userCreationMessage.setText("Username has to be unique");
                 userCreationMessage.setTextFill(Color.RED);        
             }
  
@@ -141,19 +141,27 @@ public class GoalPlannerUi extends Application {
         TextField dayInput = new TextField("DD");
         TextField monthInput = new TextField("MM");
         TextField yearInput = new TextField("YYYY");
+        Label errorMessage = new Label();
         createGoal.setOnAction(e-> {
             LocalDate createDate;
             createDate = LocalDate.of(Integer.parseInt(yearInput.getText()), Integer.parseInt(monthInput.getText()), Integer.parseInt(dayInput.getText()));
-            service.createGoal(nameInput.getText(), createDate);
-            nameInput.setText("Goal");
-            dayInput.setText("DD");
-            monthInput.setText("MM");
-            yearInput.setText("YYYY");
-            redrawGoals();
-            primaryStage.setScene(goalScene);
+            LocalDate now = LocalDate.now();
+            if (createDate.isBefore(now)) {
+                errorMessage.setText("Goal date can not be in the past");
+            } else if (nameInput.getText().length() < 3) {
+                errorMessage.setText("Goal name has to be over 3 characters");
+            } else {
+                service.createGoal(nameInput.getText(), createDate);
+                nameInput.setText("Goal");
+                dayInput.setText("DD");
+                monthInput.setText("MM");
+                yearInput.setText("YYYY");
+                redrawGoals();
+                primaryStage.setScene(goalScene);
+            }
         });
         
-        createForm.getChildren().addAll(name, nameInput, date, dayInput, monthInput, yearInput, createGoal);
+        createForm.getChildren().addAll(name, nameInput, date, dayInput, monthInput, yearInput, errorMessage, createGoal);
         
         Scene createGoalScene = new Scene(createForm, 500, 500);
        
