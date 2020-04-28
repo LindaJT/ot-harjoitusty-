@@ -1,6 +1,10 @@
 
 package goalplanner.domain;
 
+/**
+ * 
+ * Järjestelmän käyttäjää vastaava luokka
+ */
 public class User {
     
     private String name;

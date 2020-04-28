@@ -1,18 +1,22 @@
 
 package goalplanner.domain;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
+/**
+ * 
+ * Tavoitetta vastaava luokka
+ */
 public class Goal implements Comparable<Goal> {
     
     private int id;
     private String name;
-    private Date goalDate;
+    private LocalDate goalDate;
     private Boolean achieved;
     private User user;
     
-    public Goal(int id, String name, Date goalDate, User user) {
+    public Goal(int id, String name, LocalDate goalDate, User user) {
         this.id = id;
         this.name = name;
         this.goalDate = goalDate;
@@ -21,7 +25,7 @@ public class Goal implements Comparable<Goal> {
         
     }
     
-    public Goal(String name, Date goalDate, User user) {
+    public Goal(String name, LocalDate goalDate, User user) {
         this.name = name;
         this.goalDate = goalDate;
         this.achieved = false;
@@ -41,7 +45,7 @@ public class Goal implements Comparable<Goal> {
         return name;
     }
 
-    public Date getGoalDate() {
+    public LocalDate getGoalDate() {
         return goalDate;
     }
 
@@ -71,12 +75,17 @@ public class Goal implements Comparable<Goal> {
         return true;
     }
 
-
+    /**
+     * Järjestää tavoitteet päivämäärän mukaan niin, että uudempi tavoite on viimeisenä
+     * 
+     * @param goal tavoite
+     * @return vertailuarvo
+     */
     @Override
     public int compareTo(Goal goal) {
         if (this.goalDate.equals(goal.getGoalDate())) {
             return 0;
-        } else if (this.goalDate.after(goal.getGoalDate())) {
+        } else if (this.goalDate.isAfter(goal.getGoalDate())) {
             return 1;
         } else {
             return -1;

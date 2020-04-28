@@ -5,7 +5,7 @@ import goalplanner.dao.FileGoalDao;
 import goalplanner.dao.FileUserDao;
 import goalplanner.domain.Goal;
 import goalplanner.domain.GoalPlannerService;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -142,8 +142,8 @@ public class GoalPlannerUi extends Application {
         TextField monthInput = new TextField("MM");
         TextField yearInput = new TextField("YYYY");
         createGoal.setOnAction(e-> {
-            Date createDate;
-            createDate = new Date(Integer.parseInt(yearInput.getText()), Integer.parseInt(monthInput.getText()), Integer.parseInt(dayInput.getText()));
+            LocalDate createDate;
+            createDate = LocalDate.of(Integer.parseInt(yearInput.getText()), Integer.parseInt(monthInput.getText()), Integer.parseInt(dayInput.getText()));
             service.createGoal(nameInput.getText(), createDate);
             nameInput.setText("Goal");
             dayInput.setText("DD");
@@ -197,8 +197,8 @@ public class GoalPlannerUi extends Application {
         HBox box = new HBox(10);
         Label label  = new Label(goal.getName());
         label.setMinHeight(28);
-        int day = goal.getGoalDate().getDay();
-        int month = goal.getGoalDate().getMonth();
+        int day = goal.getGoalDate().getDayOfMonth();
+        int month = goal.getGoalDate().getMonthValue();
         int year = goal.getGoalDate().getYear();
         Label date = new Label(day + "/" + month + "/" + year);
         date.setMinHeight(28);

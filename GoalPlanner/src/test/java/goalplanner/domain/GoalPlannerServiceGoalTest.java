@@ -1,8 +1,8 @@
 
 package goalplanner.domain;
 
+import java.time.LocalDate;
 import org.junit.Before;
-import java.util.Date;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -22,14 +22,14 @@ public class GoalPlannerServiceGoalTest {
         User user2 = new User("Toka", "toka");
         userDao.create(user1);
         userDao.create(user2);
-        goalDao.create(new Goal("80 op", new Date(2020, 05, 23), user1));
+        goalDao.create(new Goal("80 op", LocalDate.of(2020, 05, 23), user1));
         service = new GoalPlannerService(userDao, goalDao);
         service.login("eka");
     }
     
     @Test
     public void canCreateGoal() {
-        boolean result = service.createGoal("run a marathon", new Date(2020, 06,01));
+        boolean result = service.createGoal("run a marathon", LocalDate.of(2020, 06,01));
         assertTrue(result);
     }
     
@@ -66,7 +66,7 @@ public class GoalPlannerServiceGoalTest {
     
     @Test
     public void loggedUserCanAddGoals() {
-        service.createGoal("test", new Date(2020, 01, 01));
+        service.createGoal("test", LocalDate.of(2020, 01, 01));
         List<Goal> goals = service.getUnachieved();
         assertEquals(2, goals.size());
         Goal goal = goals.get(0);

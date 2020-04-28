@@ -3,11 +3,14 @@ package goalplanner.domain;
 
 import goalplanner.dao.GoalDao;
 import goalplanner.dao.UserDao;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Sovelluslogiikasta vastaava luokka 
+ */
 
 public class GoalPlannerService {
     
@@ -19,6 +22,14 @@ public class GoalPlannerService {
         this.userDao = userDao;
         this.goalDao = goalDao;
     }
+    
+    /**
+    * Uuden käyttäjän luominen
+    *
+    * @param   name   luotavan käyttäjän nimi
+    * 
+    * @param    username    luotavan käyttäjän käyttäjänimi
+    */
     
     public boolean createUser(String name, String username)  {   
         if (userDao.findByUsername(username) != null) {
@@ -34,7 +45,15 @@ public class GoalPlannerService {
         return true;
     }
     
-    public boolean createGoal(String name, Date date) {
+    /**
+     * Uuden tavoitteen luominen käyttäjälle
+     * 
+     * @param name tavoitteen nimi
+     * @param date tavoitteen tavoitepäivämäärä
+     * 
+     */
+    
+    public boolean createGoal(String name, LocalDate date) {
         Goal goal = new Goal(name, date, loggedIn);
         try {
             goalDao.create(goal);
@@ -43,6 +62,13 @@ public class GoalPlannerService {
         }
         return true;
     }
+    
+    /**
+     * Käyttäjän sisäänkirjautuminen
+     * 
+     * @param username käyttäjänimi, jolla sisäänkirjautumista yritetään
+     * 
+     */
     
     public boolean login(String username) {
         User user = userDao.findByUsername(username);
@@ -55,15 +81,28 @@ public class GoalPlannerService {
         return true;
     }
     
+    /**
+     * Metodi palauttaa sisäänkirjautuneen käyttäjän
+     * 
+     * @return sisäänkirjautunut käyttäjä
+     */
     public User getLoggedUser() {
         return loggedIn;
     }
 
+    /**
+     * Käyttäjän uloskirjautuminen
+     */
     
     public void logout() {
         loggedIn = null;  
     }
     
+    /**
+     * Käyttäjän vielä saavuttamattomat tavoitteet
+     * 
+     * @return lista käyttäjän saavuttamattomista tavoitteista
+     */
     public List<Goal> getUnachieved() {
         if (loggedIn == null) {
             return new ArrayList<>();
@@ -75,6 +114,12 @@ public class GoalPlannerService {
                 .filter(goal->!goal.getAchieved())
                 .collect(Collectors.toList());
     }
+    
+    /**
+     * Metodi asettaa tavoitteen saavutetuksi
+     * 
+     * @param id tavoitteen id 
+     */
     
     public void setAchieved(int id) {
         try {

@@ -8,7 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
+/**
+ * 
+ * Käyttäjien tiedostoon tallentamisesta ja tiedostosta hakemisesta vastaava luokka
+ */
 public class FileUserDao implements UserDao {
     
     private List<User> users;
@@ -20,6 +23,9 @@ public class FileUserDao implements UserDao {
         load();
     }
     
+    /**
+     * Käyttäjien hakeminen tiedostosta
+     */
     private void load() {
         try {
             Scanner reader = new Scanner(new File(file));
@@ -32,7 +38,11 @@ public class FileUserDao implements UserDao {
             e.printStackTrace();
         }
     }
-
+    
+    /**
+     * Käyttäjien tallentaminen tiedostoon 
+     */
+    
     private void save() {
         try {
             FileWriter writer = new FileWriter(new File(file));
@@ -44,19 +54,38 @@ public class FileUserDao implements UserDao {
             e.printStackTrace();
         }
     }
-
+    
+    /**
+     * Uuden käyttäjän luominen ja tallentaminen tiedostoon
+     * 
+     * @param user uusi käyttäjä
+     * @return luotu käyttäjä
+     */
+    
     @Override
     public User create(User user) {
         users.add(user);
         save();
         return user;
     }
-
+    
+    /**
+     * Metodi hakee käyttäjän käyttäjänimen perusteella
+     * 
+     * @param username käyttäjänimi jolla haetaan
+     * 
+     * @return löydetty käyttäjä tai null, jos käyttäjänimeä ei löytynyt 
+     */
     @Override
     public User findByUsername(String username) {
         return users.stream().filter(u->u.getUsername().equals(username)).findFirst().orElse(null);
     }
-
+    
+    /**
+     * Lista kaikista käyttäjistä
+     * 
+     * @return kaikki käyttäjät 
+     */
     @Override
     public List<User> getAll() {
         return users;

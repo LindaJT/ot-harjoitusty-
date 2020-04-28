@@ -1,8 +1,9 @@
 
-package goalplanner.domain;
+package goalplanner.dao;
 
 import goalplanner.dao.FileUserDao;
 import goalplanner.dao.UserDao;
+import goalplanner.domain.User;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.List;
