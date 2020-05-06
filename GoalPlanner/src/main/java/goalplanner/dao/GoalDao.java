@@ -39,5 +39,7 @@ public interface GoalDao {
     
     void setAchieved(int id) throws Exception;
     
+    Goal findById(int id);
+    
     
 }

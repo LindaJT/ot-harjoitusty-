@@ -15,21 +15,24 @@ public class Goal implements Comparable<Goal> {
     private LocalDate goalDate;
     private Boolean achieved;
     private User user;
+    private String category;
     
-    public Goal(int id, String name, LocalDate goalDate, User user) {
+    public Goal(int id, String name, LocalDate goalDate, Boolean achieved, User user, String category) {
         this.id = id;
         this.name = name;
         this.goalDate = goalDate;
-        this.achieved = false;
+        this.achieved = achieved;
         this.user = user;
+        this.category = category;
         
     }
     
-    public Goal(String name, LocalDate goalDate, User user) {
+    public Goal(String name, LocalDate goalDate, User user, String category) {
         this.name = name;
         this.goalDate = goalDate;
         this.achieved = false;
         this.user = user;
+        this.category = category;
         
     }
 
@@ -60,6 +63,10 @@ public class Goal implements Comparable<Goal> {
 
     public User getUser() {
         return user;
+    }
+    
+    public String getCategory() {
+        return category;
     }
 
 

@@ -15,6 +15,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -33,7 +36,10 @@ public class GoalPlannerUi extends Application {
     private Scene newUserScene;
     private Scene logInScene;
     
-    private VBox goalNodes;
+    private VBox todayNodes;
+    private VBox weekNodes;
+    private VBox monthNodes;
+    private VBox yearNodes;
     
     public static void main(String[] args) {
         launch(args);
@@ -65,6 +71,7 @@ public class GoalPlannerUi extends Application {
             menuLabel.setText("Welcome to GoalPlanner " + username + "!");
             if (service.login(username)) {
                 loginMessage.setText("");
+                redrawGoals();
                 primaryStage.setScene(goalScene);  
                 usernameInput.setText("");
             } else {
@@ -80,7 +87,7 @@ public class GoalPlannerUi extends Application {
         
         loginPane.getChildren().addAll(loginMessage, inputPane, loginButton, createButton);       
         
-        logInScene = new Scene(loginPane, 500, 500);    
+        logInScene = new Scene(loginPane, 700, 700);    
    
         // new createNewUserScene
         
@@ -129,7 +136,7 @@ public class GoalPlannerUi extends Application {
         ScrollPane goalScroll = new ScrollPane();
         BorderPane mainPane = new BorderPane(goalScroll);
         
-        goalScene = new Scene(mainPane, 500, 500);
+        goalScene = new Scene(mainPane, 700, 700);
         
         VBox createForm = new VBox(10);
         Button createGoal = new Button("Set");
@@ -142,6 +149,12 @@ public class GoalPlannerUi extends Application {
         TextField monthInput = new TextField("MM");
         TextField yearInput = new TextField("YYYY");
         Label errorMessage = new Label();
+        //CheckBox repeatBox = new CheckBox("Repeat?");
+        //ComboBox choices = new ComboBox();
+        //choices.getItems().addAll("Don't repeat", "Daily", "Weekly", "Monthly", "Yearly");
+        Label repeatQ = new Label("Do you want to repeat the goal? Write daily, weekly, monthly or yearly");
+        TextField repeatA = new TextField();
+        TextField times = new TextField("How many times?");
         createGoal.setOnAction(e-> {
             LocalDate createDate;
             createDate = LocalDate.of(Integer.parseInt(yearInput.getText()), Integer.parseInt(monthInput.getText()), Integer.parseInt(dayInput.getText()));
@@ -151,27 +164,39 @@ public class GoalPlannerUi extends Application {
             } else if (nameInput.getText().length() < 3) {
                 errorMessage.setText("Goal name has to be over 3 characters");
             } else {
-                service.createGoal(nameInput.getText(), createDate);
+                service.createGoal(nameInput.getText(), createDate, "category");
+                int id = service.getUnachieved().size() +1;
+                if (!repeatA.getText().isEmpty()) {
+                    repeats(repeatA.getText(), Integer.parseInt(times.getText()), id);
+                }
                 nameInput.setText("Goal");
                 dayInput.setText("DD");
                 monthInput.setText("MM");
                 yearInput.setText("YYYY");
-                redrawGoals();
-                primaryStage.setScene(goalScene);
+                times.setText("How many times?");
+                id = -1;
+                primaryStage.setScene(goalScene); 
             }
         });
         
-        createForm.getChildren().addAll(name, nameInput, date, dayInput, monthInput, yearInput, errorMessage, createGoal);
+        createForm.getChildren().addAll(name, nameInput, date, dayInput, monthInput, yearInput, repeatQ, repeatA, times, errorMessage, createGoal);
         
-        Scene createGoalScene = new Scene(createForm, 500, 500);
+        Scene createGoalScene = new Scene(createForm, 700, 700);
        
-        newUserScene = new Scene(newUserPane, 500, 500);
+        newUserScene = new Scene(newUserPane, 700, 700);
         
         
         VBox menuPane = new VBox(10);
         Button logoutButton = new Button("Logout");
         Button createGoalButton = new Button("Set a goal!");
-        menuPane.getChildren().addAll(menuLabel, logoutButton, createGoalButton);
+        HBox calendarPane = new HBox(30);
+        Label goalCalendar = new Label("Your goals: ");
+        Button todayButton = new Button("TODAY");
+        Button weekButton = new Button("THIS WEEK");
+        Button monthButton = new Button("THIS MONTH");
+        Button yearButton = new Button("LATER THAN THIS MONTH");
+        calendarPane.getChildren().addAll(goalCalendar, todayButton, weekButton, monthButton, yearButton);
+        menuPane.getChildren().addAll(menuLabel, logoutButton, createGoalButton, calendarPane);
         logoutButton.setOnAction(e->{
             service.logout();
             primaryStage.setScene(logInScene);
@@ -180,12 +205,36 @@ public class GoalPlannerUi extends Application {
             primaryStage.setScene(createGoalScene);
         });
         
-        goalNodes = new VBox(10);
-        goalNodes.setMaxWidth(280);
-        goalNodes.setMinWidth(280);
-        redrawGoals();
+        todayNodes = new VBox(10);
+        weekNodes = new VBox(10);
+        monthNodes = new VBox(10);
+        yearNodes = new VBox(10);
+        todayNodes.setMaxWidth(280);
+        todayNodes.setMinWidth(280);
+        weekNodes.setMaxWidth(280);
+        weekNodes.setMinWidth(280);
+        monthNodes.setMaxWidth(280);
+        monthNodes.setMinWidth(280);
+        yearNodes.setMaxWidth(280);
+        yearNodes.setMinWidth(280);
         
-        goalScroll.setContent(goalNodes);
+        todayButton.setOnAction(e -> {
+            redrawGoals();
+            goalScroll.setContent(todayNodes);
+        });
+        weekButton.setOnAction(e -> {
+            redrawGoals();
+            goalScroll.setContent(weekNodes);
+        });
+        monthButton.setOnAction(e -> {
+            redrawGoals();
+            goalScroll.setContent(monthNodes);
+        });
+        yearButton.setOnAction(e -> {
+            redrawGoals();
+            goalScroll.setContent(yearNodes);
+        });
+        
         mainPane.setTop(menuPane);
         
         primaryStage.setTitle("Welcome to Goal Planner!");
@@ -218,19 +267,46 @@ public class GoalPlannerUi extends Application {
                 
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
-        box.setPadding(new Insets(0,5,0,5));
+    //    box.setPadding(new Insets(0,5,0,5));
         
         box.getChildren().addAll(label, date, spacer, button);
         return box;
     }
     
     public void redrawGoals() {
-        goalNodes.getChildren().clear();     
+        todayNodes.getChildren().clear();     
+        weekNodes.getChildren().clear();  
+        monthNodes.getChildren().clear();  
+        yearNodes.getChildren().clear();  
 
-        List<Goal> unachieved = service.getUnachieved();
-        unachieved.forEach(goal->{
-            goalNodes.getChildren().add(createGoalNode(goal));
-        });     
+        List<Goal> todaysGoals = service.getTodaysGoals();
+        todaysGoals.forEach(goal->{
+            todayNodes.getChildren().add(createGoalNode(goal));  
+        });
+        List<Goal> weekGoals = service.getWeeklyGoals();
+        weekGoals.forEach(goal->{
+            weekNodes.getChildren().add(createGoalNode(goal));  
+        });
+        List<Goal> monthGoals = service.getMonthGoals();
+        monthGoals.forEach(goal->{
+            monthNodes.getChildren().add(createGoalNode(goal));  
+        });
+        List<Goal> yearGoals = service.getYearGoals();
+        yearGoals.forEach(goal->{
+            yearNodes.getChildren().add(createGoalNode(goal));  
+        });
+    }
+    
+    public void repeats(String type, int repeatTimes, int id) {
+        if (type.equals("Daily")) {
+            service.repeatDaily(repeatTimes, id);
+        } else if (type.equals("Weekly")) {
+            service.repeatWeekly(repeatTimes, id);
+        } else if (type.equals("Monthly")) {
+            service.repeatMonthly(repeatTimes, id);
+        } else {
+            service.repeatYearly(repeatTimes, id);
+        }
     }
     
     @Override

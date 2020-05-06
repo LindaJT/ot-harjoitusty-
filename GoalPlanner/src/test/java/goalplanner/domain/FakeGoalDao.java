@@ -30,4 +30,13 @@ public class FakeGoalDao implements GoalDao {
         }
     }   
     
+    public Goal findById(int id) {
+        for (Goal goal : goals) {
+            if (goal.getId() == id) {
+                return goal;
+            }
+        }
+        return null;
+    }
+    
 }

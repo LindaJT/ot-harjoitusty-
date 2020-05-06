@@ -30,9 +30,10 @@ public class FileGoalDao implements GoalDao {
                 int id = Integer.parseInt(parts[0]);
                 String name = parts[1];
                 String[] dateparts = parts[2].split("-");
+                Boolean achieved = Boolean.parseBoolean(parts[3]);
                 LocalDate goalDate = LocalDate.of(Integer.parseInt(dateparts[0]), Integer.parseInt(dateparts[1]), Integer.parseInt(dateparts[2]));
                 User user = users.getAll().stream().filter(u->u.getUsername().equals(parts[4])).findFirst().orElse(null);
-                Goal goal = new Goal(id, name, goalDate, user);
+                Goal goal = new Goal(id, name, goalDate, achieved, user, parts[5]);
                 goals.add(goal);
             }
         } catch (Exception e) {
@@ -104,4 +105,7 @@ public class FileGoalDao implements GoalDao {
         save();
     }  
     
+    public Goal findById(int id){
+        return goals.stream().filter(g->g.getId() == id).findFirst().orElse(null);
+    }
 }

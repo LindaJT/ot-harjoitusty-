@@ -50,17 +50,20 @@ public class GoalPlannerService {
      * 
      * @param name tavoitteen nimi
      * @param date tavoitteen tavoitepäivämäärä
+     * @param category tavoitteen kategoria
+     * 
+     * @return luotu tavoite
      * 
      */
     
-    public boolean createGoal(String name, LocalDate date) {
-        Goal goal = new Goal(name, date, loggedIn);
+    public Goal createGoal(String name, LocalDate date, String category) {
+        Goal goal = new Goal(name, date, loggedIn, category);
         try {
-            goalDao.create(goal);
+            Goal newGoal = goalDao.create(goal);
+            return newGoal;
         } catch (Exception e) {
-            return false;
+            return null;
         }
-        return true;
     }
     
     /**
@@ -115,6 +118,50 @@ public class GoalPlannerService {
                 .collect(Collectors.toList());
     }
     
+    public List<Goal> getTodaysGoals() {
+        List<Goal> unachieved = this.getUnachieved();
+        List<Goal> todaysGoals = new ArrayList<>();
+        for (Goal goal : unachieved) {
+            if (LocalDate.now().equals(goal.getGoalDate())) {
+                todaysGoals.add(goal);
+            }
+        }
+        return todaysGoals;
+    }
+    
+    public List<Goal> getWeeklyGoals() {
+        List<Goal> unachieved = this.getUnachieved();
+        List<Goal> weeklyGoals = new ArrayList<>();
+        for (Goal goal : unachieved) {
+            if (goal.getGoalDate().isBefore(LocalDate.now().plusDays(6))) {
+                weeklyGoals.add(goal);
+            }
+        }
+        return weeklyGoals;
+    }
+    
+    public List<Goal> getMonthGoals() {
+        List<Goal> unachieved = this.getUnachieved();
+        List<Goal> monthGoals = new ArrayList<>();
+        for (Goal goal : unachieved) {
+            if (goal.getGoalDate().getMonthValue() == LocalDate.now().getMonthValue() && goal.getGoalDate().getYear() == LocalDate.now().getYear()) {
+                monthGoals.add(goal);
+            }
+        }
+        return monthGoals;
+    }
+    
+    public List<Goal> getYearGoals() {
+        List<Goal> unachieved = this.getUnachieved();
+        List<Goal> yearGoals = new ArrayList<>();
+        for (Goal goal : unachieved) {
+            if (goal.getGoalDate().getYear() == LocalDate.now().getYear()) {
+                yearGoals.add(goal);
+            }
+        }
+        return yearGoals;
+    }
+    
     /**
      * Metodi asettaa tavoitteen saavutetuksi
      * 
@@ -129,4 +176,59 @@ public class GoalPlannerService {
         }
     }
     
+    public void repeatDaily(int id, int times) {
+        try {
+            Goal goal = goalDao.findById(id);
+            String name = goal.getName();
+            LocalDate date = goal.getGoalDate();
+            String category = goal.getCategory();
+            for (int i = 0; i < times; i++) {
+                createGoal(name, date.plusDays(i+1), category);
+            }
+        } catch (Exception e) {
+            System.out.println("Something went wrong");
+        }
+    }
+    
+    public void repeatWeekly(int id, int times) {
+        try {
+            Goal goal = goalDao.findById(id);
+            String name = goal.getName();
+            LocalDate date = goal.getGoalDate();
+            String category = goal.getCategory();
+            for (int i = 0; i < times; i++) {
+                createGoal(name, date.plusDays((i+1)*7), category);
+            }
+        } catch (Exception e) {
+            System.out.println("Something went wrong");
+        }
+    }
+    
+    public void repeatMonthly(int id, int times) {
+        try {
+            Goal goal = goalDao.findById(id);
+            String name = goal.getName();
+            LocalDate date = goal.getGoalDate();
+            String category = goal.getCategory();
+            for (int i = 0; i < times; i++) {
+                createGoal(name, date.plusMonths(i+1), category);
+            }
+        } catch (Exception e) {
+            System.out.println("Something went wrong");
+        }
+    }
+    
+    public void repeatYearly(int id, int times) {
+        try {
+            Goal goal = goalDao.findById(id);
+            String name = goal.getName();
+            LocalDate date = goal.getGoalDate();
+            String category = goal.getCategory();
+            for (int i = 0; i < times; i++) {
+                createGoal(name, date.plusYears(i+1), category);
+            }
+        } catch (Exception e) {
+            System.out.println("Something went wrong");
+        }
+    }
 }
