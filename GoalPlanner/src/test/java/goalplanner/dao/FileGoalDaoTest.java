@@ -76,6 +76,16 @@ public class FileGoalDaoTest {
         assertEquals("testi2", goalFound.getName());
     }
     
+    @Test
+    public void goalCanBeSetAchieved() throws Exception {
+        User user = new User("Linda", "linda");
+        Goal goal = new Goal("testi", LocalDate.of(2020, 5, 23), user, "terveys");
+        dao.create(goal);
+        dao.setAchieved(2);
+        Goal goalFound = dao.findById(2);
+        assertTrue(goalFound.getAchieved());
+    }
+    
     @After
     public void tearDown() {
         userFile.delete();

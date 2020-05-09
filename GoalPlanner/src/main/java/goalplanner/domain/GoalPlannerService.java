@@ -133,7 +133,7 @@ public class GoalPlannerService {
         List<Goal> unachieved = this.getUnachieved();
         List<Goal> weeklyGoals = new ArrayList<>();
         for (Goal goal : unachieved) {
-            if (goal.getGoalDate().isBefore(LocalDate.now().plusDays(6))) {
+            if (goal.getGoalDate().isBefore(LocalDate.now().plusDays(6)) && goal.getGoalDate().isAfter(LocalDate.now().minusDays(1))) {
                 weeklyGoals.add(goal);
             }
         }

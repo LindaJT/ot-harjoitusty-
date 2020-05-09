@@ -23,7 +23,7 @@ public class GoalPlannerServiceGoalTest {
         User user2 = new User("Toka", "toka");
         userDao.create(user1);
         userDao.create(user2);
-        goalDao.create(new Goal("80 op", LocalDate.of(2020, 5, 23), user1, "opiskelu"));
+        goalDao.create(new Goal("80 op", LocalDate.of(2020, 1, 1), user1, "opiskelu"));
         service = new GoalPlannerService(userDao, goalDao);
         service.login("eka");
     }
@@ -67,7 +67,7 @@ public class GoalPlannerServiceGoalTest {
     
     @Test
     public void loggedUserCanAddGoals() {
-        service.createGoal("test", LocalDate.of(2020, 01, 01), "terveys");
+        service.createGoal("test", LocalDate.of(2019, 01, 01), "terveys");
         List<Goal> goals = service.getUnachieved();
         assertEquals(2, goals.size());
         Goal goal = goals.get(0);
@@ -80,8 +80,8 @@ public class GoalPlannerServiceGoalTest {
         List<Goal> goals = service.getUnachieved();
         Goal secondGoal = goals.get(1);
         Goal thirdGoal = goals.get(2);
-        assertEquals(LocalDate.of(2020, 5, 24), secondGoal.getGoalDate());
-        assertEquals(LocalDate.of(2020, 5, 25), thirdGoal.getGoalDate());
+        assertEquals(LocalDate.of(2020, 1, 2), secondGoal.getGoalDate());
+        assertEquals(LocalDate.of(2020, 1, 3), thirdGoal.getGoalDate());
         assertEquals(goals.size(), 3);
     }
     
@@ -101,8 +101,8 @@ public class GoalPlannerServiceGoalTest {
         List<Goal> goals = service.getUnachieved();
         Goal secondGoal = goals.get(1);
         Goal thirdGoal = goals.get(2);
-        assertEquals(LocalDate.of(2020, 5, 30), secondGoal.getGoalDate());
-        assertEquals(LocalDate.of(2020, 6, 6), thirdGoal.getGoalDate());
+        assertEquals(LocalDate.of(2020, 1, 8), secondGoal.getGoalDate());
+        assertEquals(LocalDate.of(2020, 1, 15), thirdGoal.getGoalDate());
         assertEquals(goals.size(), 3);
     }
     
@@ -112,8 +112,8 @@ public class GoalPlannerServiceGoalTest {
         List<Goal> goals = service.getUnachieved();
         Goal secondGoal = goals.get(1);
         Goal thirdGoal = goals.get(2);
-        assertEquals(LocalDate.of(2020, 6, 23), secondGoal.getGoalDate());
-        assertEquals(LocalDate.of(2020, 7, 23), thirdGoal.getGoalDate());
+        assertEquals(LocalDate.of(2020, 2, 1), secondGoal.getGoalDate());
+        assertEquals(LocalDate.of(2020, 3, 1), thirdGoal.getGoalDate());
         assertEquals(goals.size(), 3);
     }
     
@@ -123,9 +123,56 @@ public class GoalPlannerServiceGoalTest {
         List<Goal> goals = service.getUnachieved();
         Goal secondGoal = goals.get(1);
         Goal thirdGoal = goals.get(2);
-        assertEquals(LocalDate.of(2021, 5, 23), secondGoal.getGoalDate());
-        assertEquals(LocalDate.of(2022, 5, 23), thirdGoal.getGoalDate());
+        assertEquals(LocalDate.of(2021, 1, 1), secondGoal.getGoalDate());
+        assertEquals(LocalDate.of(2022, 1, 1), thirdGoal.getGoalDate());
         assertEquals(goals.size(), 3);
+    }
+    
+    @Test
+    public void getTodayGoalsReturnsTodaysGoals() {
+        service.createGoal("testi", LocalDate.now(), "terveys");
+        service.repeatDaily(2, 2);
+        List<Goal> todaysGoals = service.getTodaysGoals();
+        assertEquals(1, todaysGoals.size());
+        assertEquals("testi", todaysGoals.get(0).getName());
+    }
+    
+    @Test
+    public void getWeekGoalsReturnsThisWeeksGoals() {
+        service.createGoal("testi", LocalDate.now(), "terveys");
+        service.repeatDaily(2, 2);
+        List<Goal> weekGoals = service.getWeeklyGoals();
+        assertEquals(3, weekGoals.size());
+        assertEquals("testi", weekGoals.get(0).getName());
+        service.createGoal("testi2", LocalDate.now().plusDays(2), "terveys");
+        weekGoals = service.getWeeklyGoals();
+        assertEquals(4, weekGoals.size());
+    }
+    
+    @Test
+    public void getMontGoalsReturnsThisMonthsGoals() {
+        int month = LocalDate.now().getMonthValue();
+        service.createGoal("testi", LocalDate.of(2020, month, 1), "terveys");
+        service.repeatDaily(2, 2);
+        List<Goal> monthGoals = service.getMonthGoals();
+        assertEquals(3, monthGoals.size());
+        assertEquals("testi", monthGoals.get(0).getName());
+        service.createGoal("testi2", LocalDate.of(2020, month, 1), "terveys");
+        monthGoals = service.getMonthGoals();
+        assertEquals(4, monthGoals.size());
+    }
+    
+     @Test
+    public void getYearGoalsReturnsThisYearsGoals() {
+        int year = LocalDate.now().getYear();
+        service.createGoal("testi", LocalDate.of(year, 5, 5), "terveys");
+        service.repeatDaily(2, 2);
+        List<Goal> yearGoals = service.getYearGoals();
+        assertEquals(4, yearGoals.size());
+        assertEquals("testi", yearGoals.get(3).getName());
+        service.createGoal("testi2", LocalDate.of(year, 6, 1), "terveys");
+        yearGoals = service.getYearGoals();
+        assertEquals(5, yearGoals.size());
     }
     
     
