@@ -196,7 +196,7 @@ public class GoalPlannerUi extends Application {
         Button todayButton = new Button("TODAY");
         Button weekButton = new Button("THIS WEEK");
         Button monthButton = new Button("THIS MONTH");
-        Button yearButton = new Button("LATER THAN THIS MONTH");
+        Button yearButton = new Button("THIS YEAR");
         calendarPane.getChildren().addAll(goalCalendar, todayButton, weekButton, monthButton, yearButton);
         menuPane.getChildren().addAll(menuLabel, logoutButton, createGoalButton, calendarPane);
         logoutButton.setOnAction(e->{
@@ -211,14 +211,14 @@ public class GoalPlannerUi extends Application {
         weekNodes = new VBox(10);
         monthNodes = new VBox(10);
         yearNodes = new VBox(10);
-        todayNodes.setMaxWidth(280);
-        todayNodes.setMinWidth(280);
-        weekNodes.setMaxWidth(280);
-        weekNodes.setMinWidth(280);
-        monthNodes.setMaxWidth(280);
-        monthNodes.setMinWidth(280);
-        yearNodes.setMaxWidth(280);
-        yearNodes.setMinWidth(280);
+ //       todayNodes.setMaxWidth(280);
+   //     todayNodes.setMinWidth(280);
+     //   weekNodes.setMaxWidth(280);
+       // weekNodes.setMinWidth(280);
+//        monthNodes.setMaxWidth(280);
+  //      monthNodes.setMinWidth(280);
+    //    yearNodes.setMaxWidth(280);
+      //  yearNodes.setMinWidth(280);
         
         todayButton.setOnAction(e -> {
             redrawGoals();
@@ -268,12 +268,17 @@ public class GoalPlannerUi extends Application {
             service.setAchieved(goal.getId());
             redrawGoals();
         });
+        box.setSpacing(10);
+        box.setMargin(label, new Insets(20, 20, 20, 20));
+        box.setMargin(date, new Insets(20, 20, 20, 20));
+        box.setMargin(category, new Insets(20, 20, 20, 20));
+        box.setMargin(button, new Insets(20, 20, 20, 20));
                 
-        Region spacer = new Region();
-        HBox.setHgrow(spacer, Priority.ALWAYS);
-    //    box.setPadding(new Insets(0,5,0,5));
+    //    Region spacer = new Region();
+      //  HBox.setHgrow(spacer, Priority.ALWAYS);
+        //box.setPadding(new Insets(0,5,0,5));
         
-        box.getChildren().addAll(label, date, spacer, category, button);
+        box.getChildren().addAll(label, date, category, button);
         return box;
     }
     
