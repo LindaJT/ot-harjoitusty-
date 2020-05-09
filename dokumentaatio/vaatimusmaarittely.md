@@ -19,15 +19,16 @@ Alussa sovelluksella on ainoastaan yksi käyttäjärooli eli normaali käyttäj�
 
 * ~~Käyttäjä voi asettaa itselleen uuden tavoitteen~~ TEHTY
 	* ~~Tavoitteelle asetetaan päivämäärä johon mennessä se tulisi saavuttaa~~TEHTY
-	* Tavoitteelle valitaan kategoria
+	* ̃~~Tavoitteelle valitaan kategoria~~  TEHTY
 * ~~Etusivulla käyttäjä voi tarkastella kaikkia asettamiaan tavoitteita~~ TEHTY
-	* ~~Tavoitteet ovat järjestyksessä tavoitepäivämäärän mukaan~~
+	* ~~Tavoitteet ovat järjestyksessä tavoitepäivämäärän mukaan~~ TEHTY
+	* ~~Käyttäjä voi tarkastella ko. päivän, viikon, kuukauden tai vuoden tavoitteitaan~~ TEHTY
 * ~~Käyttäjä voi asettaa tavoitteen toteutetuksi~~ TEHTY
 * ~~Käyttäjä voi kirjautua ulos~~ TEHTY
 
 ## Jatkokehitysideoita
 
-* Tavoitteen voi valita toistuvan esim. päivittäin/viikottain/kuukausittain
+* ~~Tavoitteen voi valita toistuvan esim. päivittäin/viikottain/kuukausittain~~ TEHTY
 * Käyttäjä voi tarkastella statistiikkaa toteutuneista tavoitteista
 * Enemmän kenttiä tavoitekategorian mukaan esim.
 	* Budjettitavoitteisiin kenttä säästettävälle rahasummalle ja ajalle, jolloin sovellus laskisi, paljon päivässä pitää laittaa säästöön
