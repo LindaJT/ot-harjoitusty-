@@ -105,7 +105,7 @@ public class FileGoalDao implements GoalDao {
         save();
     }  
     
-    public Goal findById(int id){
+    public Goal findById(int id) {
         return goals.stream().filter(g->g.getId() == id).findFirst().orElse(null);
     }
 }

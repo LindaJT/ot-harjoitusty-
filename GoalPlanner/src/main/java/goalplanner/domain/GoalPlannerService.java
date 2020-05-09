@@ -183,7 +183,7 @@ public class GoalPlannerService {
             LocalDate date = goal.getGoalDate();
             String category = goal.getCategory();
             for (int i = 0; i < times; i++) {
-                createGoal(name, date.plusDays(i+1), category);
+                createGoal(name, date.plusDays(i + 1), category);
             }
         } catch (Exception e) {
             System.out.println("Something went wrong");
@@ -197,7 +197,7 @@ public class GoalPlannerService {
             LocalDate date = goal.getGoalDate();
             String category = goal.getCategory();
             for (int i = 0; i < times; i++) {
-                createGoal(name, date.plusDays((i+1)*7), category);
+                createGoal(name, date.plusDays((i + 1) * 7), category);
             }
         } catch (Exception e) {
             System.out.println("Something went wrong");
@@ -211,7 +211,7 @@ public class GoalPlannerService {
             LocalDate date = goal.getGoalDate();
             String category = goal.getCategory();
             for (int i = 0; i < times; i++) {
-                createGoal(name, date.plusMonths(i+1), category);
+                createGoal(name, date.plusMonths(i + 1), category);
             }
         } catch (Exception e) {
             System.out.println("Something went wrong");
@@ -225,7 +225,7 @@ public class GoalPlannerService {
             LocalDate date = goal.getGoalDate();
             String category = goal.getCategory();
             for (int i = 0; i < times; i++) {
-                createGoal(name, date.plusYears(i+1), category);
+                createGoal(name, date.plusYears(i + 1), category);
             }
         } catch (Exception e) {
             System.out.println("Something went wrong");

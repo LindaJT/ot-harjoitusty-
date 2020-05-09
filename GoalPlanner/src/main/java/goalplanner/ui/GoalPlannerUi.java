@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.collections.FXCollections;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
@@ -144,14 +145,15 @@ public class GoalPlannerUi extends Application {
         VBox.setVgrow(spacer, Priority.ALWAYS);
         Label name = new Label("Goal");
         TextField nameInput = new TextField("Name");
+        Label categoryLabel = new Label("Choose category of the goal");
+        ComboBox category = new ComboBox();
+        String categories[] = {"Health", "Studies", "Work", "Money"};
+        category.setItems(FXCollections .observableArrayList(categories));
         Label date = new Label("Set goal day, month and year");
         TextField dayInput = new TextField("DD");
         TextField monthInput = new TextField("MM");
         TextField yearInput = new TextField("YYYY");
         Label errorMessage = new Label();
-        //CheckBox repeatBox = new CheckBox("Repeat?");
-        //ComboBox choices = new ComboBox();
-        //choices.getItems().addAll("Don't repeat", "Daily", "Weekly", "Monthly", "Yearly");
         Label repeatQ = new Label("Do you want to repeat the goal? Write daily, weekly, monthly or yearly");
         TextField repeatA = new TextField();
         TextField times = new TextField("How many times?");
@@ -179,7 +181,7 @@ public class GoalPlannerUi extends Application {
             }
         });
         
-        createForm.getChildren().addAll(name, nameInput, date, dayInput, monthInput, yearInput, repeatQ, repeatA, times, errorMessage, createGoal);
+        createForm.getChildren().addAll(name, nameInput, categoryLabel, category, date, dayInput, monthInput, yearInput, repeatQ, repeatA, times, errorMessage, createGoal);
         
         Scene createGoalScene = new Scene(createForm, 700, 700);
        
@@ -259,6 +261,8 @@ public class GoalPlannerUi extends Application {
         int year = goal.getGoalDate().getYear();
         Label date = new Label(day + "/" + month + "/" + year);
         date.setMinHeight(28);
+        Label category = new Label(goal.getCategory());
+        category.setMinHeight(28);
         Button button = new Button("Achieved the goal!");
         button.setOnAction(e->{
             service.setAchieved(goal.getId());
@@ -269,7 +273,7 @@ public class GoalPlannerUi extends Application {
         HBox.setHgrow(spacer, Priority.ALWAYS);
     //    box.setPadding(new Insets(0,5,0,5));
         
-        box.getChildren().addAll(label, date, spacer, button);
+        box.getChildren().addAll(label, date, spacer, category, button);
         return box;
     }
     
