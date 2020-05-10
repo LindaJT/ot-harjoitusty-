@@ -14,7 +14,10 @@ Sovelluksen avulla käyttäjän on mahdollista asettaa itselleen eri kategorioih
 
 ## Releaset
 
+[Loppupalautus](https://github.com/LindaJT/ot-harjoitustyo/releases/tag/Final)
+
 [Viikko 6](https://github.com/LindaJT/ot-harjoitustyo/releases/tag/viikko6)
+
 [Viikko 5](https://github.com/LindaJT/ot-harjoitustyo/releases/tag/viikko5)
 
 ## Komentorivitoiminnot
