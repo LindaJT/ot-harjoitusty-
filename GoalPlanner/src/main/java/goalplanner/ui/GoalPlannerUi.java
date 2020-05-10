@@ -165,8 +165,10 @@ public class GoalPlannerUi extends Application {
                 errorMessage.setText("Goal date can not be in the past");
             } else if (nameInput.getText().length() < 3) {
                 errorMessage.setText("Goal name has to be over 3 characters");
+            } else if (category.getValue().toString().length() < 1) {
+                errorMessage.setText("Choose category");
             } else {
-                service.createGoal(nameInput.getText(), createDate, "category");
+                service.createGoal(nameInput.getText(), createDate, category.getValue().toString());
                 int id = service.getUnachieved().size() +1;
                 if (!repeatA.getText().isEmpty()) {
                     repeats(repeatA.getText(), Integer.parseInt(times.getText()), id);

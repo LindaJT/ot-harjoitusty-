@@ -49,7 +49,7 @@ public class FileGoalDao implements GoalDao {
     private void save() throws Exception {
         try (FileWriter writer = new FileWriter(new File(file))) {
             for (Goal goal : goals) {
-                writer.write(goal.getId() + ";" + goal.getName() + ";" + goal.getGoalDate() + ";" + goal.getAchieved() + ";" + goal.getUser().getUsername() + "\n");
+                writer.write(goal.getId() + ";" + goal.getName() + ";" + goal.getGoalDate() + ";" + goal.getAchieved() + ";" + goal.getUser().getUsername() + ";" + goal.getCategory() + "\n");
             }
         }
     }    
