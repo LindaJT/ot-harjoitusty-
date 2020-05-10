@@ -36,6 +36,14 @@ Kattavuusraporttia voi tarkastella avaamalla selaimella tiedoston */GoalPlanner/
 Komento:
 `mvn package`
 
+### JavaDoc
+
+JavaDoc generoidaan komennolla 
+
+`mvn javadoc:javadoc`
+
+JavaDocia voi tarkastella avaamalla selaimella tiedosto *GoalPlanner/target/site/apidocs/index.html*
+
 ### Checkstyle
 
 Tiedostoon checkstyle.xml määrittelemät tarkistukset suoritetaan komennolla:

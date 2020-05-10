@@ -105,6 +105,12 @@ public class FileGoalDao implements GoalDao {
         save();
     }  
     
+    /**
+     * Metodi etsii tavoitteen sen id:n perusteella
+     * 
+     * @param id haettavan tavoitteen id
+     * @return löydetty tavoite tai null jos id:llä ei löytynyt tavoitetta
+     */
     public Goal findById(int id) {
         return goals.stream().filter(g->g.getId() == id).findFirst().orElse(null);
     }

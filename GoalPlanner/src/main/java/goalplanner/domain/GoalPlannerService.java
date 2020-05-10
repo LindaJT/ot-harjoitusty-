@@ -118,6 +118,11 @@ public class GoalPlannerService {
                 .collect(Collectors.toList());
     }
     
+    /**
+     * Metodi listaa kyseessä olevan päivän saavuttamattomat tavoitteet
+     * 
+     * @return Lista päivän saavuttamattomista tavoitteista
+     */
     public List<Goal> getTodaysGoals() {
         List<Goal> unachieved = this.getUnachieved();
         List<Goal> todaysGoals = new ArrayList<>();
@@ -129,6 +134,11 @@ public class GoalPlannerService {
         return todaysGoals;
     }
     
+    /**
+     * Metodi listaa kyseessä olevan viikon saavuttamattomat tavoitteen
+     * 
+     * @return Lista viikon saavuttamattomista tavoitteista
+     */
     public List<Goal> getWeeklyGoals() {
         List<Goal> unachieved = this.getUnachieved();
         List<Goal> weeklyGoals = new ArrayList<>();
@@ -140,6 +150,11 @@ public class GoalPlannerService {
         return weeklyGoals;
     }
     
+    /**
+     * Metodi listaa kyseessä olevan kuukauden saavuttamattomat tavoitteen
+     * 
+     * @return Lista kuukauden saavuttamattomista tavoitteista
+     */
     public List<Goal> getMonthGoals() {
         List<Goal> unachieved = this.getUnachieved();
         List<Goal> monthGoals = new ArrayList<>();
@@ -151,6 +166,11 @@ public class GoalPlannerService {
         return monthGoals;
     }
     
+    /**
+     * Metodi listaa kyseessä olevan vuoden saavuttamattomat tavoitteen
+     * 
+     * @return Lista vuoden saavuttamattomista tavoitteista
+     */
     public List<Goal> getYearGoals() {
         List<Goal> unachieved = this.getUnachieved();
         List<Goal> yearGoals = new ArrayList<>();
@@ -176,6 +196,14 @@ public class GoalPlannerService {
         }
     }
     
+    /**
+     * Metodi toistaa halutun tavoitteen peräkkäisinä päivinä parametrina annetun määrän mukaan
+     * Metodi luo uusia tavoitteita, joilla on sama nimi, luoja ja kategoria kuin alkuperäisellä tavoitteella
+     * mutta päivämäärä muuttuu
+     * 
+     * @param id toistettavan tavoitteen id
+     * @param times kuinka montaa tavoitetta halutaan toistaa
+     */
     public void repeatDaily(int id, int times) {
         try {
             Goal goal = goalDao.findById(id);
@@ -190,6 +218,14 @@ public class GoalPlannerService {
         }
     }
     
+    /**
+     * Metodi toistaa halutun tavoitteen viikon välein parametrina annetun määrän mukaan
+     * Metodi luo uusia tavoitteita, joilla on sama nimi, luoja ja kategoria kuin alkuperäisellä tavoitteella
+     * mutta päivämäärä muuttuu
+     * 
+     * @param id toistettavan tavoitteen id
+     * @param times kuinka montaa tavoitetta halutaan toistaa
+     */
     public void repeatWeekly(int id, int times) {
         try {
             Goal goal = goalDao.findById(id);
@@ -204,6 +240,14 @@ public class GoalPlannerService {
         }
     }
     
+    /**
+     * Metodi toistaa halutun tavoitteen kuukauden välein parametrina annetun määrän mukaan
+     * Metodi luo uusia tavoitteita, joilla on sama nimi, luoja ja kategoria kuin alkuperäisellä tavoitteella
+     * mutta päivämäärä muuttuu
+     * 
+     * @param id toistettavan tavoitteen id
+     * @param times kuinka montaa tavoitetta halutaan toistaa
+     */
     public void repeatMonthly(int id, int times) {
         try {
             Goal goal = goalDao.findById(id);
@@ -218,6 +262,14 @@ public class GoalPlannerService {
         }
     }
     
+    /**
+     * Metodi toistaa halutun tavoitteen vuoden välein parametrina annetun määrän mukaan
+     * Metodi luo uusia tavoitteita, joilla on sama nimi, luoja ja kategoria kuin alkuperäisellä tavoitteella
+     * mutta päivämäärä muuttuu
+     * 
+     * @param id toistettavan tavoitteen id
+     * @param times kuinka montaa tavoitetta halutaan toistaa
+     */
     public void repeatYearly(int id, int times) {
         try {
             Goal goal = goalDao.findById(id);

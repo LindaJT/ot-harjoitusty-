@@ -211,14 +211,6 @@ public class GoalPlannerUi extends Application {
         weekNodes = new VBox(10);
         monthNodes = new VBox(10);
         yearNodes = new VBox(10);
- //       todayNodes.setMaxWidth(280);
-   //     todayNodes.setMinWidth(280);
-     //   weekNodes.setMaxWidth(280);
-       // weekNodes.setMinWidth(280);
-//        monthNodes.setMaxWidth(280);
-  //      monthNodes.setMinWidth(280);
-    //    yearNodes.setMaxWidth(280);
-      //  yearNodes.setMinWidth(280);
         
         todayButton.setOnAction(e -> {
             redrawGoals();
@@ -274,10 +266,6 @@ public class GoalPlannerUi extends Application {
         box.setMargin(category, new Insets(20, 20, 20, 20));
         box.setMargin(button, new Insets(20, 20, 20, 20));
                 
-    //    Region spacer = new Region();
-      //  HBox.setHgrow(spacer, Priority.ALWAYS);
-        //box.setPadding(new Insets(0,5,0,5));
-        
         box.getChildren().addAll(label, date, category, button);
         return box;
     }
